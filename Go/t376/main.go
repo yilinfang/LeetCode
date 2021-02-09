@@ -3,11 +3,6 @@ package main
 import "fmt"
 
 func wiggleMaxLength(nums []int) int {
-	// return wiggleMaxLengthDP(nums)
-	return wiggleMaxLengthGreedy(nums)
-}
-
-func wiggleMaxLengthDP(nums []int) int {
 	if nums == nil {
 		return 0
 	}
@@ -61,50 +56,6 @@ func wiggleMaxLengthDP(nums []int) int {
 		}
 	}
 	return res
-}
-
-func wiggleMaxLengthGreedy(nums []int) int {
-	if nums == nil {
-		return 0
-	}
-	if len(nums) == 0 || len(nums) == 1 {
-		return len(nums)
-	}
-	len1, len2 := 1, 1
-	sig1, sig2 := 1, -1
-	idx1, idx2 := 0, 0
-	for i := 1; i < len(nums); i++ {
-		if sig1 == 1 {
-			if nums[i] > nums[idx1] {
-				sig1 = -1
-				idx1 = i
-				len1++
-			}
-		} else {
-			if nums[i] < nums[idx1] {
-				sig1 = 1
-				idx1 = i
-				len1++
-			}
-		}
-		if sig2 == 1 {
-			if nums[i] > nums[idx2] {
-				sig2 = -1
-				idx2 = i
-				len2++
-			}
-		} else {
-			if nums[i] < nums[idx2] {
-				sig2 = 1
-				idx2 = i
-				len2++
-			}
-		}
-	}
-	if len1 > len2 {
-		return len1
-	}
-	return len2
 }
 
 func main() {
