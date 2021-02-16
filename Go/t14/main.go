@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func longestCommonPrefix(strs []string) string {
@@ -10,10 +9,10 @@ func longestCommonPrefix(strs []string) string {
 		return ""
 	}
 	res := ""
-	length := math.MaxInt64
-	for _, str := range strs {
-		if len(str) < length {
-			length = len(str)
+	length := len(strs[0])
+	for i := 1; i < len(strs); i++ {
+		if len(strs[i]) < length {
+			length = len(strs[i])
 		}
 	}
 	for i := 0; i < length; i++ {
